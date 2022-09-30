@@ -95,7 +95,7 @@
             let instructions = document.getElementById('instructions').innerText;
             let solution = solve(problem, instructions);
             console.log(solution)
-            if (document.getElementById('response').value == solution) {
+            if (document.getElementById('response').value.toUpperCase() == solution) {
                 document.getElementById('response').value="";
                 streak++;
                 t = 0; updateTimer();
