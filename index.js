@@ -116,19 +116,19 @@ function formHints(prop, choice) {
 
     // Binary to Hex
     else if (choice == 2) {
-        if (prop != '1010') {
-            hint = "Convert four binary digits into one hex digit, e.g. 1010 is A"
+        if (prop != '0001') {
+            hint = "Convert four bits into one hex digit, e.g. 0001 is 1"
         } else {
-            hint = "Convert four binary digits into one hex digit, e.g. 0000 is 0"
+            hint = "Convert four bits into one hex digit, e.g. 0000 is 0"
         }
     }
 
     // Hex to Binary
     else if (choice == 3) {
-        if (prop != 'A') {
-            hint = "Convert one hex digit into four binary digits, e.g. A is 1010"
+        if (prop != '1') {
+            hint = "Convert one hex digit into four bits, e.g. 1 is 0001"
         } else {
-            hint = "Convert one hex digit into four binary digits, e.g. 0 is 0000"
+            hint = "Convert one hex digit into four bits, e.g. 0 is 0000"
         }
     }
 
