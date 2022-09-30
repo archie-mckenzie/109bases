@@ -9,6 +9,10 @@ body {
 .indicator {
     font-size: 30px;
 }
+.hints {
+    margin-top: 3vh;
+    color: darkred;
+}
 .answer {
     font-size:8mm;
     width: 80%;

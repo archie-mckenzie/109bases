@@ -81,13 +81,72 @@ function generateBase() {
             document.getElementById('instructions').innerText = "Hex → Decimal"
         }
         document.getElementById('proposal').innerText = prop;
-        console.log("CHOICE" + choice);
+        formHints(prop, choice);
     } else {
         document.getElementById('proposal').innerText = "???";
         document.getElementById('instructions').innerText = "Choose Binary or Hex!"
+        document.getElementById('hints').innerText = ""
     }
     document.getElementById('proposal').style.color="black";
     document.getElementById('instructions').style.color="black";
 }
 
+function formHints(prop, choice) {
+    
+    let hint = ""
+    if (!document.getElementById('hintcheckbox').checked) {
+        document.getElementById('hints').innerText = hint;
+        return;
+    }
+
+    // Binary to Decimal
+    if (choice == 0) {
+        for (let i = 0; i < document.getElementById('slider').value; i++) {
+            hint += "(" + prop[i] + " * " + Math.pow(2, document.getElementById('slider').value - i - 1) + ")"
+            if (i < (document.getElementById('slider').value - 1)) {
+                hint += " + "
+            }
+        }
+    }
+
+    // Decimal to Binary
+    else if (choice == 1) {
+        hint = "Divide by two. If there is a remainder, the bit is 1. If not, it is 0. Repeat"
+    }
+
+    // Binary to Hex
+    else if (choice == 2) {
+        if (prop != '1010') {
+            hint = "Convert four binary digits into one hex digit, e.g. 1010 is A"
+        } else {
+            hint = "Convert four binary digits into one hex digit, e.g. 0000 is 0"
+        }
+    }
+
+    // Hex to Binary
+    else if (choice == 3) {
+        if (prop != 'A') {
+            hint = "Convert one hex digit into four binary digits, e.g. A is 1010"
+        } else {
+            hint = "Convert one hex digit into four binary digits, e.g. 0 is 0000"
+        }
+    }
+
+    // Decimal to Hex
+    else if (choice == 4) {
+        hint = "Convert into binary first"
+    }
+
+    // Hex to Decimal
+    else if (choice == 5) {
+        for (let i = 0; i < prop.length; i++) {
+            hint += "(" + prop[i] + " * " + Math.pow(16, prop.length - i - 1) + ")"
+            if (i < prop.length - 1) {
+                hint += " + "
+            }
+        }
+    }
+
+    document.getElementById('hints').innerText = hint;
+}
 

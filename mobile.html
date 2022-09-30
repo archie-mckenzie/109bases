@@ -9,6 +9,7 @@
 <body>
     <div style="margin-top: 2vh; "id="proposal" class="question">Get Ready</div>
     <div id="instructions"></div>
+    <div id="hints" class="hints"></div>
     <input type="text" id="response" class="answer" autofocus>
     <div id="timer" class="indicator">⏰ 0 🏆 0</div>
     <div style="margin-top: 5vh;"></div>
@@ -19,6 +20,7 @@
     <div id="rangeValue"></div>
     <input id="timeSlider" type="range" min="4" max="32" value="32" oninput="adjustTimeSlider(); reset(); return false;">
     <div id="timeLimit"></div>
+    <div style="margin-top: 3vh;">Show Hints:<input id="hintcheckbox"  type="checkbox" name="hintcheckbox"></div>
     <script>
         document.getElementById('proposal').innerText = "";
         document.getElementById('response').value = "";
@@ -51,6 +53,15 @@
         })
         let hex = document.getElementById('hexadecimal');
         hex.addEventListener('change', (event) => {
+            reset();
+        })
+        let hintcheckbox = document.getElementById('hintcheckbox');
+        hintcheckbox.addEventListener('change', (event) => {
+            if (document.getElementById('hintcheckbox').checked) {
+                document.getElementById('response').style="margin-top: 2vh";
+            } else {
+                document.getElementById('response').style="margin-top: 5vh";
+            }
             reset();
         })
 
