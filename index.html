@@ -21,10 +21,10 @@
         Binary:<input id="binary" type="checkbox" name="binary" checked><br>
         Hexadecimal:<input id="hexadecimal"  type="checkbox" name="hexadecimal" checked><br>
     <br>
-    <input id="slider" type="range" min="1" max="8" value="4" oninput="adjustSlider(); return false;">
+    <input id="slider" type="range" min="1" max="8" value="4" oninput="adjustSlider(); reset(); return false;">
     <div id="rangeValue"></div>
     <br>
-    <input id="timeSlider" type="range" min="4" max="32" value="32" oninput="adjustTimeSlider(); return false;">
+    <input id="timeSlider" type="range" min="4" max="32" value="32" oninput="adjustTimeSlider(); reset(); return false;">
     <div id="timeLimit"></div>
     <script>
         document.getElementById('proposal').innerText = "";
@@ -43,6 +43,15 @@
         // let bits = document.getElementById('slider').value;
         // let interval = document.getElementById('timeSlider').value;
 
+
+        // Reset
+        function reset() {
+            t = 0;
+            streak = 0;
+            generateBase();
+            updateTimer();
+        }
+
         // Timer
         var timerID = window.setInterval(updateTimer, 1000);
 
@@ -59,19 +68,40 @@
         // Response Submission
 
         function solve(problem, instructions) {
-            return "123"
+            var n;
+            if (instructions == "Binary → Decimal") {
+                n = Number("0b" + problem);
+                return n.toString(10)
+            } else if (instructions == "Decimal → Binary") {
+                return Number(problem).toString(2);
+            } else if (instructions == "Binary → Hex") {
+                n = Number("0b" + problem);
+                return n.toString(16).toUpperCase();
+            } else if (instructions == "Hex → Binary") {
+                n = Number("0x" + problem);
+                return n.toString(2);
+            } else if (instructions == "Decimal → Hex") {
+                console.log(problem)
+                return Number(problem).toString(16).toUpperCase();
+            } else if (instructions == "Hex → Decimal") {
+                n = Number("0x" + problem);
+                return n.toString(10);
+            } 
+            return -1;
         }
 
         function submitResponse() {
             let problem = document.getElementById('proposal').innerText;
             let instructions = document.getElementById('instructions').innerText;
             let solution = solve(problem, instructions);
+            console.log(solution)
             if (document.getElementById('response').value == solution) {
-                document.getElementById('instructions').style.color="black";
                 document.getElementById('response').value="";
                 streak++;
                 t = 0; updateTimer();
+                generateBase();
             } else {
+                document.getElementById('proposal').style.color="red";
                 document.getElementById('instructions').style.color="red";
             }
         }
@@ -130,6 +160,7 @@
                 document.getElementById('proposal').innerText = "???";
                 document.getElementById('instructions').innerText = "Choose Binary or Hex!"
             }
+            document.getElementById('proposal').style.color="black";
             document.getElementById('instructions').style.color="black";
         }
 
