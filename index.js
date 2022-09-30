@@ -139,7 +139,13 @@ function formHints(prop, choice) {
 
     // Decimal to Hex
     else if (choice == 4) {
-        hint = "Convert into binary first"
+        if (Number(prop) > 16) {
+            hint = "Convert into binary first."
+        } else if (Number(prop) > 9) {
+            hint = "0, 1, ... 8, 9, A, B, ... F"
+        } else {
+            hint = "This is not a trick question"
+        }
     }
 
     // Hex to Decimal
