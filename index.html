@@ -51,6 +51,17 @@
             updateTimer();
         }
 
+        // Reset if checkboxes changed
+        let bin = document.getElementById('binary');
+        bin.addEventListener('change', (event) => {
+            reset();
+        })
+        let hex = document.getElementById('hexadecimal');
+        hex.addEventListener('change', (event) => {
+            reset();
+        })
+
+
         // Timer
         var timerID = window.setInterval(updateTimer, 1000);
         function updateTimer() {
