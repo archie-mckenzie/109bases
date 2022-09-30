@@ -111,7 +111,12 @@ function formHints(prop, choice) {
 
     // Decimal to Binary
     else if (choice == 1) {
-        hint = "Divide by two. If there is a remainder, the bit is 1. If not, it is 0. Repeat."
+        if (Number(prop) > 1) {
+            hint = "Divide by two. If there is a remainder, the bit is 1. If not, it is 0. Repeat."
+        } else {
+            hint = "This is not a trick question"
+        }
+        
     }
 
     // Binary to Hex
