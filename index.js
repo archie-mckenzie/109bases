@@ -150,14 +150,14 @@ function formHints(prop, choice) {
 
     // Hex to Decimal
     else if (choice == 5) {
-        if (Number(prop) > 16) {
+        if (Number("0x" + prop) > 16) {
             for (let i = 0; i < prop.length; i++) {
                 hint += "(" + prop[i] + " * " + Math.pow(16, prop.length - i - 1) + ")"
                 if (i < prop.length - 1) {
                     hint += " + "
                 }
             }
-        } else if (Number(prop) > 9) {
+        } else if (Number("0x" + prop) > 9) {
             hint = "0, 1, ... 8, 9, A, B, ... F"
         } else {
             hint = "This is not a trick question"
